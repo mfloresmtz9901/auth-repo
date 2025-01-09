@@ -19,11 +19,6 @@ urlpatterns = [
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
-    # User management
-    path("users/", include("django_demo.users.urls", namespace="users")),
-    path("accounts/", include("allauth.urls")),
-    path("dj-rest-auth/", include("dj_rest_auth.urls")),
-    path("dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
     # Your stuff: custom urls includes go here
     # ...
     # Media files
@@ -42,6 +37,11 @@ urlpatterns += [
         SpectacularSwaggerView.as_view(url_name="api-schema"),
         name="api-docs",
     ),
+    # User management
+    path("api/users/", include("django_demo.users.urls", namespace="users")),
+    path("api/accounts/", include("allauth.urls")),
+    path("api/dj-rest-auth/", include("dj_rest_auth.urls")),
+    path("api/dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
 ]
 
 if settings.DEBUG:
